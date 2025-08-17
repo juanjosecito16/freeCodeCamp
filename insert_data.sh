@@ -8,17 +8,9 @@ else
 fi
 
 # Do not change code above this line. Use the PSQL variable above to query your database.
-#!/bin/bash
-if [[ $1 == "test" ]]; then
-  PSQL="psql --username=postgres --dbname=worldcuptest -t --no-align -c"
-else
-  PSQL="psql --username=freecodecamp --dbname=worldcup -t --no-align -c"
-fi
 
-# Limpiar tablas (opcional para repetición)
 $PSQL "TRUNCATE games, teams RESTART IDENTITY;"
 
-# Saltar encabezado y leer CSV
 tail -n +2 games.csv | while IFS=',' read YEAR ROUND WINNER OPPONENT WGOALS OGOALS
 do
   # winner
